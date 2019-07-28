@@ -13,13 +13,12 @@ public class CharactorControl : MonoBehaviour
 
     public Animator myAnimator;
 
+    [Header("移动速度")]
     public float moveSpeed = 0;
-
-    private float oldHorizontalValue = 0;
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
@@ -30,11 +29,15 @@ public class CharactorControl : MonoBehaviour
     private void Move()
     {
         float horizontalValue = Input.GetAxis("Horizontal");
-        if (horizontalValue != this.oldHorizontalValue)
-        {
-            this.myRigidbody.velocity = new Vector2(horizontalValue * moveSpeed, 0);
-            this.oldHorizontalValue = horizontalValue;
+        if (horizontalValue == 0)
+        { 
+            this.myAnimator.Play("Idel");
+            return;
         }
-        
+        horizontalValue = horizontalValue > 0 ? 1 : -1;
+        this.myAnimator.Play("Run");
+        this.myRigidbody.velocity = new Vector2(horizontalValue * moveSpeed, 0);
+        this.transform.localScale = new Vector3(-horizontalValue, 1, 1);
+
     }
 }

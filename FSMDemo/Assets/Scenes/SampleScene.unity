@@ -1239,7 +1239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 1524863739}
   myAnimator: {fileID: 478828653}
-  moveSpeed: 15
+  moveSpeed: 5
 --- !u!4 &1524863738
 Transform:
   m_ObjectHideFlags: 0
@@ -1248,7 +1248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524863736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.44, z: 0}
+  m_LocalPosition: {x: 0.045826837, y: -1.4449365, z: -0.1456934}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 478828652}
