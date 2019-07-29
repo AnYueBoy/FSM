@@ -16,6 +16,9 @@ public class CharactorControl : MonoBehaviour
     [Header("移动速度")]
     public float moveSpeed = 0;
 
+    [Header("跳跃力")]
+    public float jumpForce = 0;
+
     private void Start()
     {
 
@@ -24,20 +27,34 @@ public class CharactorControl : MonoBehaviour
     private void Update()
     {
         this.Move();
+
+        this.Jump();
     }
 
     private void Move()
     {
         float horizontalValue = Input.GetAxis("Horizontal");
-        if (horizontalValue == 0)
-        { 
-            this.myAnimator.Play("Idel");
+        if (Mathf.Abs(horizontalValue) == 0)
+        {
+            this.myAnimator.SetBool("isRun", false);
             return;
         }
         horizontalValue = horizontalValue > 0 ? 1 : -1;
-        this.myAnimator.Play("Run");
+        this.myAnimator.SetBool("isRun", true);
         this.myRigidbody.velocity = new Vector2(horizontalValue * moveSpeed, 0);
         this.transform.localScale = new Vector3(-horizontalValue, 1, 1);
+    }
 
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+           this.myAnimator.Play("Jump");
+
+            this.myRigidbody.velocity = new Vector2(0, 0);
+
+
+            this.myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
     }
 }
