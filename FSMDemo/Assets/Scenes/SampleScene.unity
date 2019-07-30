@@ -126,8 +126,8 @@ GameObject:
   - component: {fileID: 134572330}
   - component: {fileID: 134572329}
   - component: {fileID: 134572328}
-  m_Layer: 0
-  m_Name: Tilemap
+  m_Layer: 8
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1213,7 +1213,10 @@ MonoBehaviour:
   myRigidbody: {fileID: 1524863739}
   myAnimator: {fileID: 478828653}
   moveSpeed: 5
-  jumpForce: 15
+  jumpForce: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!4 &1524863738
 Transform:
   m_ObjectHideFlags: 0
