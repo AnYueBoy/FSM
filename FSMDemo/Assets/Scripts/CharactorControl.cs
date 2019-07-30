@@ -42,7 +42,7 @@ public class CharactorControl : MonoBehaviour
         horizontalValue = horizontalValue > 0 ? 1 : -1;
         this.myAnimator.SetBool("isRun", true);
         // 对刚体同时施加两个速度，会让跳跃异常
-        transform.Translate(new Vector2(horizontalValue*moveSpeed*Time.delatime,0));
+        transform.Translate(new Vector2(horizontalValue*moveSpeed*Time.deltaTime,0));
         this.transform.localScale = new Vector3(-horizontalValue, 1, 1);
     }
 
