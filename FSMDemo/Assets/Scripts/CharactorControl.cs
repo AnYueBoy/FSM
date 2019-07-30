@@ -41,7 +41,8 @@ public class CharactorControl : MonoBehaviour
         }
         horizontalValue = horizontalValue > 0 ? 1 : -1;
         this.myAnimator.SetBool("isRun", true);
-        this.myRigidbody.velocity = new Vector2(horizontalValue * moveSpeed, 0);
+        // 对刚体同时施加两个速度，会让跳跃异常
+        transform.Translate(new Vector2(horizontalValue*moveSpeed*Time.delatime,0));
         this.transform.localScale = new Vector3(-horizontalValue, 1, 1);
     }
 
