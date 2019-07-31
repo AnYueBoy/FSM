@@ -19,6 +19,9 @@ public class CharactorControl : MonoBehaviour
     [Header("跳跃力")]
     public float jumpForce = 0;
 
+    [Header("碰撞层")]
+    public LayerMask layerMask;
+
     private void Start()
     {
 
@@ -41,20 +44,33 @@ public class CharactorControl : MonoBehaviour
         }
         horizontalValue = horizontalValue > 0 ? 1 : -1;
         this.myAnimator.SetBool("isRun", true);
-        this.myRigidbody.velocity = new Vector2(horizontalValue * moveSpeed, 0);
+        // 对刚体同时施加两个速度，会让跳跃异常
+        transform.Translate(new Vector2(horizontalValue * moveSpeed * Time.deltaTime, 0));
         this.transform.localScale = new Vector3(-horizontalValue, 1, 1);
     }
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-           this.myAnimator.Play("Jump");
+            if (!this.IsGround())
+            {
+                return;
+            }
+            this.myAnimator.Play("Jump");
 
             this.myRigidbody.velocity = new Vector2(0, 0);
 
-
             this.myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+    }
+
+    private bool IsGround()
+    {
+        if (Physics2D.Raycast(transform.position, Vector2.down, 1.0f, layerMask))
+        {
+            return true;
+        }
+        return false;
     }
 }
