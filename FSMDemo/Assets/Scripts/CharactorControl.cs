@@ -34,6 +34,8 @@ public class CharactorControl : MonoBehaviour
         this.Jump();
 
         this.Attack();
+
+        this.Sit();
     }
 
     private void Move()
@@ -97,5 +99,18 @@ public class CharactorControl : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void Sit()
+    {
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            if (this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                return;
+            }
+
+            this.myAnimator.Play("Sit");
+        }
     }
 }
