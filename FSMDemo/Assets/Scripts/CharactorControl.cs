@@ -32,10 +32,17 @@ public class CharactorControl : MonoBehaviour
         this.Move();
 
         this.Jump();
+
+        this.Attack();
     }
 
     private void Move()
     {
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            return;
+        }
+
         float horizontalValue = Input.GetAxis("Horizontal");
         if (Mathf.Abs(horizontalValue) == 0)
         {
@@ -53,6 +60,11 @@ public class CharactorControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
+            if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                return;
+            }
+
             if (!this.IsGround())
             {
                 return;
@@ -62,6 +74,19 @@ public class CharactorControl : MonoBehaviour
             this.myRigidbody.velocity = new Vector2(0, 0);
 
             this.myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                return;
+            }
+
+            this.myAnimator.Play("Attack");
         }
     }
 
