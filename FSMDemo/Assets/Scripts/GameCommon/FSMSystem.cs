@@ -8,10 +8,10 @@ public class FSMSystem
     private List<FSMState> states;
 
     private StateID currentStateID;
-    private StateID CurrentStateID { get { return currentStateID; } }
+    public StateID CurrentStateID { get { return currentStateID; } }
 
     private FSMState currentState;
-    private FSMState CurrentState { get { return currentState; } }
+    public FSMState CurrentState { get { return currentState; } }
 
     public FSMSystem()
     {

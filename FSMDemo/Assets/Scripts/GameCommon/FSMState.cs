@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class FSMState
 {
 
-    protected FSMState fsm;
+    protected FSMSystem fsm;
 
     protected Dictionary<Transition, StateID> map = new Dictionary<Transition, StateID>();
 
@@ -24,7 +24,7 @@ public abstract class FSMState
         id = value;
     }
 
-    public FSMState(FSMState fsm)
+    public FSMState(FSMSystem fsm)
     {
         this.fsm = fsm;
     }
