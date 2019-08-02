@@ -26,9 +26,15 @@ public abstract class FSMState
     public FSMState(FSMSystem fsm)
     {
         this.fsm = fsm;
+
+        AddTransition(Transition.NO_SEE_PLAYER, StateID.PATROL);
+
+        AddTransition(Transition.SEE_PLAYER, StateID.ATTACK);
+
+        AddTransition(Transition.GAME_PAUSE, StateID.IDEL);
     }
 
-    public void AddTransition(Transition transtion, StateID state)
+    private void AddTransition(Transition transtion, StateID state)
     {
         if (transtion == Transition.NULL)
         {
@@ -50,8 +56,6 @@ public abstract class FSMState
         }
 
         map.Add(transtion, state);
-
-        Debug.Log("current trans is:" + transtion + "  current state is:" + state + "  is add success");
     }
 
     public void DeleteTransition(Transition transtion)
