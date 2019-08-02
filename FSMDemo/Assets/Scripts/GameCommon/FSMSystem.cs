@@ -13,12 +13,18 @@ public class FSMSystem
     private FSMState currentState;
     public FSMState CurrentState { get { return currentState; } }
 
-    public FSMSystem()
+    private GameObject player;
+
+    private GameObject npc;
+
+    public FSMSystem(GameObject player,GameObject npc)
     {
         states = new List<FSMState>();
+        this.player = player;
+        this.npc = npc;
     }
 
-    public void Update(GameObject player, GameObject npc)
+    public void Update()
     {
         currentState.Act(player, npc);
         currentState.Reason(player, npc);
@@ -93,9 +99,9 @@ public class FSMSystem
         {
             if(fsmState.ID == currentStateID)
             {
-                this.currentState.DoBeforLeave();
+                this.currentState.DoBeforLeave(player,npc);
                 currentState = fsmState;
-                this.currentState.DoBeforEnter();
+                this.currentState.DoBeforEnter(player,npc);
                 break;
             }
         }

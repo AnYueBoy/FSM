@@ -30,12 +30,12 @@ public class IdelState : FSMState
         }
     }
 
-    public override void DoBeforLeave()
+    public override void DoBeforLeave(GameObject player,GameObject npc)
     {
         Debug.Log("leave current state:" + id.ToString());
     }
 
-    public override void DoBeforEnter()
+    public override void DoBeforEnter(GameObject player, GameObject npc)
     {
         Debug.Log("enter current state:" + id.ToString());
     }

@@ -17,20 +17,28 @@ public class Enemy : MonoBehaviour
 
     private GameObject npc;
 
+    public Animator myAnimator;
+
+    [Header("移动速度")]
+    public float moveSpeed = 0;
+
+    [Header("碰撞层")]
+    public LayerMask layerMask;
+
     private void Start()
     {
         this.player = GameObject.Find("Man");
 
         this.npc = this.transform.gameObject;
 
-        fsmSystem = new FSMSystem();
+        fsmSystem = new FSMSystem(player,npc);
 
         this.tempState = new IdelState(fsmSystem);
         tempState.AddTransition(Transition.NO_SEE_PLAYER, StateID.PATROL);
         fsmSystem.AddState(tempState);
 
-        this.tempState = new ChaseState(fsmSystem);
-        tempState.AddTransition(Transition.SEE_PLAYER, StateID.CHASE);
+        this.tempState = new AttackState(fsmSystem);
+        tempState.AddTransition(Transition.SEE_PLAYER, StateID.Attack);
         fsmSystem.AddState(tempState);
 
         this.tempState = new PatrolState(fsmSystem);
@@ -42,6 +50,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        fsmSystem.Update(player, npc);
+        fsmSystem.Update();
     }
 }

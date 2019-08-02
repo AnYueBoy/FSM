@@ -20,7 +20,7 @@ public enum StateID
     PATROL,
 
     /// <summary>
-    /// 追逐
+    /// 攻击
     /// </summary>
-    CHASE
+    Attack
 }

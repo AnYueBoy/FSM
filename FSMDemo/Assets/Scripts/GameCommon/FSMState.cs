@@ -80,9 +80,9 @@ public abstract class FSMState
         return StateID.NULL;
     }
 
-    public virtual void DoBeforEnter() { }
+    public virtual void DoBeforEnter(GameObject player,GameObject npc) { }
 
-    public virtual void DoBeforLeave() { }
+    public virtual void DoBeforLeave(GameObject player,GameObject npc) { }
 
     public abstract void Act(GameObject player, GameObject npc);
 
