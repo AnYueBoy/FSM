@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4089686127419119607}
-  - component: {fileID: 5536005633684102154}
   - component: {fileID: 5035532964987125417}
   - component: {fileID: 3633376848103993269}
   - component: {fileID: 3574126434100882972}
@@ -35,25 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5536005633684102154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690414206663739132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65ed1516aa7507049b1304aae13551ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myRigidbody: {fileID: 5035532964987125417}
-  myAnimator: {fileID: 2198953407693671433}
-  moveSpeed: 5
-  jumpForce: 10
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!50 &5035532964987125417
 Rigidbody2D:
   serializedVersion: 4
@@ -103,6 +83,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670a08fbbe7f1a446b17ef9b75853077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAnimator: {fileID: 2198953407693671433}
+  moveSpeed: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1001 &2292599735342321979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,6 +95,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4089686127419119607}
     m_Modifications:
+    - target: {fileID: 95898481864777010, guid: 6877fb649746c674d8fbbcf60d41892b,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95898481864777010, guid: 6877fb649746c674d8fbbcf60d41892b,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95898481864777010, guid: 6877fb649746c674d8fbbcf60d41892b,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1290715225530138, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_Name
       value: sword_man
@@ -156,21 +156,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95898481864777010, guid: 6877fb649746c674d8fbbcf60d41892b,
-        type: 3}
-      propertyPath: m_CullingMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95898481864777010, guid: 6877fb649746c674d8fbbcf60d41892b,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95898481864777010, guid: 6877fb649746c674d8fbbcf60d41892b,
-        type: 3}
-      propertyPath: m_UpdateMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212874855828977060, guid: 6877fb649746c674d8fbbcf60d41892b,

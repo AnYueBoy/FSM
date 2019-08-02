@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class IdelState : FSMState
 {
+    private float idelTimer;
+
     // base 是调用基类的有参数构造函数
     // 因为在子类不能直接继承父类的构造函数
     public IdelState(FSMSystem fsm) : base(fsm)
@@ -19,24 +21,27 @@ public class IdelState : FSMState
 
     public override void Act(GameObject player, GameObject npc)
     {
-       
+        this.idelTimer += Time.deltaTime;
     }
 
     public override void Reason(GameObject player, GameObject npc)
     {
-        if (Time.time > 2)
+        if (this.idelTimer > 2)
         {
+            
             fsm.PerformTransition(Transition.NO_SEE_PLAYER);
         }
     }
 
-    public override void DoBeforLeave()
+    public override void DoBeforLeave(GameObject player,GameObject npc)
     {
         Debug.Log("leave current state:" + id.ToString());
     }
 
-    public override void DoBeforEnter()
+    public override void DoBeforEnter(GameObject player, GameObject npc)
     {
         Debug.Log("enter current state:" + id.ToString());
+
+        this.idelTimer = 0;
     }
 }
