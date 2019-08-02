@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 2198953407693671433}
-  moveSpeed: 15
+  moveSpeed: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 512

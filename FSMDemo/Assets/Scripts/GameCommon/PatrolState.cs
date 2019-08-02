@@ -17,13 +17,15 @@ public class PatrolState : FSMState
     private float moveSpeed;
 
     private LayerMask layerMask;
+
+    private float patrolTimer;
     public PatrolState(FSMSystem fsm) : base(fsm)
     {
         this.id = StateID.PATROL;
     }
     public override void Act(GameObject player, GameObject npc)
     {
-        this.myAnimator.SetBool("isRun",true);
+        this.patrolTimer += Time.deltaTime;
 
         npc.transform.localScale = new Vector3(-horizatolValue, 1, 1);
 
@@ -35,12 +37,11 @@ public class PatrolState : FSMState
     {
         if(Physics2D.Raycast(npc.transform.position,new Vector2(horizatolValue, 0), 1.5f, layerMask))
         {
-            this.myAnimator.SetBool("isRun", false);
             fsm.PerformTransition(Transition.SEE_PLAYER);
             return;
         }
 
-        if (Time.time > 3.0f)
+        if (this.patrolTimer> 3.0f)
         {
             fsm.PerformTransition(Transition.GAME_PAUSE);
         }
@@ -49,16 +50,22 @@ public class PatrolState : FSMState
     public override void DoBeforLeave(GameObject player,GameObject npc)
     {
         Debug.Log("leave current state:" + id.ToString());
+
+        this.myAnimator.SetBool("isRun", false);
     }
 
     public override void DoBeforEnter(GameObject player,GameObject npc)
     {
         Debug.Log("enter current state:" + id.ToString());
-        this.myAnimator = npc.transform.GetComponent<Animator>();
+        this.myAnimator = npc.transform.GetComponent<Enemy>().myAnimator;
         Vector3 tempLocalScale = npc.transform.localScale;
         horizatolValue = tempLocalScale.x;
         moveSpeed = npc.transform.GetComponent<Enemy>().moveSpeed;
         this.layerMask = npc.transform.GetComponent<Enemy>().layerMask;
+
+        this.patrolTimer = 0;
+
+        this.myAnimator.SetBool("isRun", true);
     }
 
   

@@ -22,5 +22,5 @@ public enum StateID
     /// <summary>
     /// 攻击
     /// </summary>
-    Attack
+    ATTACK
 }

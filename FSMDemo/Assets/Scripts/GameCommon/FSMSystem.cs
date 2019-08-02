@@ -60,6 +60,7 @@ public class FSMSystem
 
     public void DeleteState(StateID id)
     {
+
         if (id == StateID.NULL)
         {
             Debug.LogError("id is not allowed null");
@@ -87,6 +88,7 @@ public class FSMSystem
         }
 
         StateID id = currentState.GetOutPutState(trans);
+
         if(id == StateID.NULL)
         {
             Debug.LogError("trans corrponsing state is null");

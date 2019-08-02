@@ -16,7 +16,7 @@ public class AttackState : FSMState
 
     public AttackState(FSMSystem fsm) : base(fsm)
     {
-        this.id = StateID.Attack;
+        this.id = StateID.ATTACK;
     }
     public override void Act(GameObject player, GameObject npc)
     {
@@ -40,12 +40,14 @@ public class AttackState : FSMState
 
     public override void DoBeforLeave(GameObject player, GameObject npc)
     {
-        
+        Debug.Log("leave current state:" + id.ToString());
     }
 
     public override void DoBeforEnter(GameObject player, GameObject npc)
     {
-        myAnimator = npc.transform.GetComponent<Animator>();
+        Debug.Log("enter current state:" + id.ToString());
+
+        this.myAnimator = npc.transform.GetComponent<Enemy>().myAnimator;
 
         layerMask = npc.transform.GetComponent<Enemy>().layerMask;
 

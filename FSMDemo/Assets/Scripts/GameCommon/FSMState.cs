@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class FSMState
 {
-
     protected FSMSystem fsm;
 
     protected Dictionary<Transition, StateID> map = new Dictionary<Transition, StateID>();
@@ -51,6 +50,8 @@ public abstract class FSMState
         }
 
         map.Add(transtion, state);
+
+        Debug.Log("current trans is:" + transtion + "  current state is:" + state + "  is add success");
     }
 
     public void DeleteTransition(Transition transtion)
