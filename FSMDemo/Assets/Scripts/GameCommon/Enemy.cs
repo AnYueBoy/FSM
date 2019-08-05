@@ -34,15 +34,16 @@ public class Enemy : MonoBehaviour
         fsmSystem = new FSMSystem(player,npc);
 
         tempState = new IdelState(fsmSystem);
-        tempState.AddTransition(Transition.NO_SEE_PLAYER, StateID.PATROL);
+        // tempState.AddTransition(Transition.NO_SEE_PLAYER, StateID.PATROL);
         fsmSystem.AddState(tempState);
 
         tempState = new AttackState(fsmSystem);
-        tempState.AddTransition(Transition.SEE_PLAYER, StateID.ATTACK);
+        // tempState.AddTransition(Transition.SEE_PLAYER, StateID.ATTACK);
         fsmSystem.AddState(tempState);
 
         tempState = new PatrolState(fsmSystem);
-        tempState.AddTransition(Transition.GAME_PAUSE, StateID.IDEL);
+        // tempState.AddTransition(Transition.GAME_PAUSE, StateID.IDEL);
+        // tempState.AddTransition(Transition.SEE_PLAYER, StateID.ATTACK);
         fsmSystem.AddState(tempState);
     }
 
